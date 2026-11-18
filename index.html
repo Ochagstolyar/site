@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Очаг | Столярная мастерская</title>
+    <style>
+        :root {
+            --primary: #000000;
+            --accent: #c0392b;
+            --bg-light: #f9f9f9;
+            --text-dark: #333;
+            --text-gray: #666;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #fff;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0 15px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo img {
+            height: 150px;
+            width: 180px;
+        }
+
+        .logo span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .hero {
+            background-color: #fff;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            font-weight: 500;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        section {
+            padding: 60px 20px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 40px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            border: 1px solid #eee;
+            padding: 30px;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .service-card h3 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        .features-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .features-list li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .features-list li::before {
+            content: "\2713";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        button.btn-submit, a.btn-submit {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        button.btn-submit:hover, a.btn-submit:hover {
+            background-color: var(--accent);
+        }
+
+        footer {
+            background-color: #222;
+            color: #ccc;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+        .btn-submit {
+            color: #ffffff;
+        }
+
+        /* НАШИ ОТЗЫВЫ */
+.reviews {
+    padding: 60px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.reviews h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.reviews-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.review-card {
+    background: #fff;
+    border: 2px solid #ff7a00;
+    border-radius: 14px;
+    padding: 24px;
+    max-width: 300px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.review-stars {
+    color: #ff9900;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.review-text {
+    font-style: italic;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.review-author {
+    font-weight: bold;
+    color: #333;
+}
+
+/* === Примеры работ: карточки === */
+.portfolio-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.portfolio-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  background: #fff;
+  text-align: center;
+}
+
+.portfolio-bottom {
+    text-align: center;
+    margin-top: 24px;
+}
+.portfolio-bottom .btn-submit {
+    display: inline-block;
+    margin-top: 12px;
+}
+
+.portfolio-img {
+  position: relative;
+  height: 220px;
+  background: #f5f5f5;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.portfolio-img img {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: none;
+  cursor: zoom-in;
+}
+
+.portfolio-img img.current {
+  display: block;
+}
+
+.portfolio-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.portfolio-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.portfolio-dots span.on {
+  background: #333;
+}
+
+.portfolio-card h3 { margin: 12px 0 6px; }
+.portfolio-card .price { font-weight: 700; font-size: 1.1rem; margin: 0 0 12px; }
+
+
+/* Окно просмотра фото на весь экран */
+.img-view {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+
+
+.img-view img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+/* Стрелки в карточках */
+.portfolio-card {
+    position: relative;
+}
+
+.slider-arrows {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.arrow {
+    pointer-events: auto;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    color: rgb(0, 0, 0);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 480px) {
+    .arrow {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="ochag.png" alt="Логотип Очаг" width="180" height="110" onerror="this.style.display='none'">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#portfolio">Примеры</a></li>
+                    <li><a href="#reviews">Отзывы</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Очаг. Столярная мастерская.</h1>
+        <span class="subtitle">Изделия из металла и дерева в Борзе.</span>
+        <p>
+            Мы создаем прочные и эстетичные изделия, объединяя традиции ремесленного труда и современные технологии.
+            Делаем любые столярные работы.
+        </p>
+    </section>
+
+    <section id="about">
+        <h2>О компании «Очаг»</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+            Мы — производственная мастерская, где ценят точность, надёжность и человеческое отношение к делу.
+            Наша специализация — изделия из дерева и металла: от элементов интерьера до специализированных решений.
+            Подходим с вниманием к каждому заказу, в том числе по особым заказам.
+        </p>
+
+        <h3 style="padding-left: 150px; padding-top: 40px; color: var(--primary);">Почему выбирают нас:</h3>
+        <ul class="features-list">
+            <li><strong>Собственное производство.</strong> Контролируем каждый этап — от закупки сырья до финальной сборки.</li>
+            <li><strong>Точность исполнения.</strong> Используем современное оборудование и проверенные технологии.</li>
+            <li><strong>Индивидуальный подход.</strong> Готовы адаптировать типовые решения или разработать проект с нуля.</li>
+    </section>
+
+    <section id="services">
+        <h2>Наши направления</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Столярные изделия</h3>
+                <p>Работаем с массивом, фанерой, шпоном. Изготавливаем дачные туалеты, будки и другие изделия по чертежам или эскизам заказчика.</p>
+            </div>
+            <div class="service-card">
+                <h3>Металлообработка</h3>
+                <p>Создаём кованые и сварные работы: мусорные контейнеры, декоративные элементы и прочие металлоконструкции под заказ</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h2>Примеры наших работ</h2>
+
+        <div class="portfolio-slider">
+
+    <div class="portfolio-cards">
+
+        <div class="portfolio-card active">
+            <div class="portfolio-img">
+                <img src="примеры/toilet_1.jpg" alt="Дачный туалет">
+                 <img src="примеры/toilet_2.jpg" alt="Дачный туалет">
+            </div>
+
+            <div class="slider-arrows">
+    <button class="arrow prev" aria-label="Назад">&lt;</button>
+    <button class="arrow next" aria-label="Вперёд">&gt;</button>
+</div>
+
+            <h3>Дачный туалет</h3>
+            <p class="price">Цена: 20000&#8381;</p>
+        </div>
+
+        <div class="portfolio-card">
+            <div class="portfolio-img">
+                <img src="примеры/booth_1.jpg" alt="Будка для собаки">
+                <img src="примеры/booth_2.jpg" alt="Будка для собаки">
+            </div>
+
+            <div class="slider-arrows">
+    <button class="arrow prev" aria-label="Назад">&lt;</button>
+    <button class="arrow next" aria-label="Вперёд">&gt;</button>
+</div>
+
+            <h3>Будка для собаки</h3>
+            <p class="price">Цена: 15000&#8381;</p>
+        </div>
+
+        <div class="portfolio-card">
+            <div class="portfolio-img">
+                <img src="примеры/grille_1.jpg" alt="Решётка на ванну">
+                <img src="примеры/grille_2.jpg" alt="Решётка на ванну">
+            </div>
+
+            <div class="slider-arrows">
+    <button class="arrow prev" aria-label="Назад">&lt;</button>
+    <button class="arrow next" aria-label="Вперёд">&gt;</button>
+</div>
+
+            <h3>Решётка на ванну</h3>
+            <p class="price">Цена: 2500&#8381;</p>
+        </div>
+
+    </div>
+
+<div class="portfolio-bottom">
+<p class="portfolio-note">Все изделия делают вручную, с любовью к труду, на совесть.</p>
+    <p class="cta-text">Желаете приобрести наши услуги? Оставляйте заявку!</p>
+    <a href="form.html" class="btn-submit" style="background-color: #8b4513;">Оставить заявку</a>
+</div>
+    </section>
+
+    <!-- НАШИ ОТЗЫВЫ -->
+<section class="reviews" id="reviews">
+    <h2>Наши отзывы</h2>
+    <div class="reviews-container">
+
+        <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Заказывали дачный туалет — пришёл ровно по габаритам, ничего не шатается. Внутри спокойно помещается человек."</p>
+            <p class="review-author">— Ирина</p>
+        </div>
+
+        <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Взяли будку — сделали ровно, щелей нет, доски подогнаны плотно. Видно, что на совесть. Забирали самовывозом — всё показали, объяснили."</p>
+            <p class="review-author">— Кирилл</p>
+        </div>
+
+        <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">"Купили решётку — без сколов, стыки аккуратные. Всё как на фото. Теперь думаем ещё что-то заказать — качество понравилось."</p>
+            <p class="review-author">— Алина</p>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>&copy; 2026г. Столярная мастерская «Очаг». Все права защищены.</p>
+    </footer>
+
+   <script>
+document.querySelectorAll('.portfolio-card').forEach(function(card) {
+  var imgs = card.querySelectorAll('.portfolio-img img');
+  var dotsBox = document.createElement('div');
+  dotsBox.className = 'portfolio-dots';
+  var dots = [];
+
+  imgs.forEach(function(img, i) {
+    var dot = document.createElement('span');
+    if (i === 0) {
+      img.classList.add('current');
+      dot.classList.add('on');
+    }
+    dot.addEventListener('click', function() {
+      imgs.forEach(function(m) { m.classList.remove('current'); });
+      dots.forEach(function(d) { d.classList.remove('on'); });
+      img.classList.add('current');
+      dot.classList.add('on');
+    });
+    dotsBox.appendChild(dot);
+    dots.push(dot);
+
+    img.addEventListener('click', function() {
+      var view = document.createElement('div');
+      view.className = 'img-view';
+      var big = document.createElement('img');
+      big.src = img.src;
+      view.appendChild(big);
+      document.body.appendChild(view);
+      view.addEventListener('click', function() { view.remove(); });
+    });
+  });
+
+  card.querySelector('.portfolio-img').after(dotsBox);
+});
+
+document.querySelectorAll('.portfolio-card').forEach(card => {
+    const imgs = card.querySelectorAll('.portfolio-img img');
+    const dots = card.querySelectorAll('.portfolio-dots span');
+    const prevBtn = card.querySelector('.arrow.prev');
+    const nextBtn = card.querySelector('.arrow.next');
+
+    function goToSlide(index) {
+        if (imgs.length === 0) return;
+        if (index >= imgs.length) index = 0;
+        if (index < 0) index = imgs.length - 1;
+
+        imgs.forEach(m => m.classList.remove('current'));
+        dots.forEach(d => d.classList.remove('on'));
+        imgs[index].classList.add('current');
+        if (dots[index]) dots[index].classList.add('on');
+    }
+
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', function() { goToSlide(index); });
+    });
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', function() {
+            const cur = Array.from(imgs).findIndex(img => img.classList.contains('current'));
+            goToSlide(cur - 1);
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+            const cur = Array.from(imgs).findIndex(img => img.classList.contains('current'));
+            goToSlide(cur + 1);
+        });
+    }
+});
+
+</script>
+
+
+</body>
+</html>
