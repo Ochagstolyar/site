@@ -387,26 +387,37 @@
 }
         
        @media (max-width: 768px) {
-  header {
-    padding: 10px 15px;
+  header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+
+  .logo {
+    flex-shrink: 0;
+    margin: 0;
   }
 
   .logo img {
-    width: 120px;
+    width: 90px;
     height: auto;
   }
 
   nav ul {
-    flex-wrap: wrap;
-    row-gap: 5px;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
   }
 
   nav a {
-    font-size: 15px;
-    padding: 5px 8px;
+    font-size: 13px;
+    padding: 4px 5px;
+    white-space: nowrap;
   }
 }
-
     </style>
 </head>
 <body>
