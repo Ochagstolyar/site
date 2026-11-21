@@ -385,48 +385,24 @@
         font-size: 16px;
     }
 }
-        
-       @media (max-width: 768px) {
-  header .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-  }
-
-  .logo {
-    flex-shrink: 0;
-    margin: 0;
-  }
-
+      @media (max-width: 768px) {
   .logo img {
-    width: 90px;
+    width: 120px;
     height: auto;
   }
+
   nav ul {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 8px;
-    padding: 0;
-    margin: 0;
+    flex-wrap: wrap;
+    row-gap: 5px;
+    justify-content: center;
   }
 
   nav a {
     font-size: 13px;
-    padding: 4px 5px;
     white-space: nowrap;
   }
 }
-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
 
-header nav {
-    flex: 1;
-    text-align: right;
-}
     </style>
 </head>
 <body>
