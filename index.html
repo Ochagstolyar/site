@@ -385,21 +385,40 @@
         font-size: 16px;
     }
 }
-      @media (max-width: 768px) {
+        @media (max-width: 768px) {
+  /* Принудительно фиксируем контейнер шапки */
+  header .container {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    height: auto !important; /* Сбрасываем любые заданные высоты */
+  }
+
+  /* Фиксируем лого: оно не должно быть больше 120px и не должно ломать сетку */
   .logo img {
-    width: 120px;
-    height: auto;
+    width: 110px !important;
+    height: auto !important;
+    max-width: 110px !important;
+    flex-shrink: 0 !important; /* Запрещаем лого сжиматься */
   }
 
+  /* Фиксируем меню: оно должно быть в ряд, но переноситься, если не влезает */
   nav ul {
-    flex-wrap: wrap;
-    row-gap: 5px;
-    justify-content: center;
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important; /* Разрешаем перенос, если экран очень узкий */
+    justify-content: flex-end !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 15px !important;
   }
 
+  /* Пункты меню: запрещаем перенос слов внутри ссылки */
   nav a {
-    font-size: 13px;
-    white-space: nowrap;
+    font-size: 14px !important;
+    white-space: nowrap !important;
+    line-height: 1.2;
   }
 }
 
